@@ -6,8 +6,8 @@
 <p>
 
 ```C++
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+ios_base::sync_with_stdio(0);
+cin.tie(0);
 ```
 
 </p>
@@ -36,12 +36,10 @@ void solve(){
 }
 
 int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-
- 	ll t=1; //cin >> t;
- 	while(t--) solve();
-
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	ll t=1; //cin >> t;
+	while(t--) solve();
 	return 0;
 }
 ```
@@ -103,16 +101,15 @@ int main(){
 <p>
 
 ```C++
-	#define ll long long
+#define ll long long
+ll gcd(ll a,ll b){
+	if(b==0)return a;
+	else return gcd(b,a%b);
+}
 
-	ll gcd(ll a,ll b){
-		if(b==0)return a;
-		else return gcd(b,a%b);
-	}
-
-	ll lcm(ll a,ll b){
-		return a*b/gcd(a,b);
-	}
+ll lcm(ll a,ll b){
+	return a*b/gcd(a,b);
+}
 ```
 
 </p>
