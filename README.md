@@ -122,7 +122,7 @@ int main(){
 
 ## Number Thoery
 
-<details><summary>GCD & LCM</summary>
+<details><summary>GCD & LCM (Basic)</summary>
 <p>
 
 ```C++
@@ -134,6 +134,26 @@ ll gcd(ll a,ll b){
 
 ll lcm(ll a,ll b){
 	return a*b/gcd(a,b);
+}
+```
+
+</p>
+</details>
+<details><summary>GCD Fastest Implementation</summary>
+<p>
+[Maxim Plyushkin's (maxplus) comment](https://codeforces.com/blog/entry/13410?#comment-205881)
+```C++
+template<typename T>
+inline T gcd(T a, T b)
+{
+    T c;
+    while (b)
+    {
+        c = b;
+        b = a % b;
+        a = c;
+    }
+    return a;
 }
 ```
 
