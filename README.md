@@ -144,7 +144,7 @@ ll lcm(ll a,ll b){
 
 [maxplus's comment in codeforces](https://codeforces.com/blog/entry/13410?#comment-205881)
 
-````C++
+```C++
 template<typename T>
 inline T gcd(T a, T b)
 {
@@ -156,8 +156,8 @@ inline T gcd(T a, T b)
         a = c;
     }
     return a;
-}```
+}
+```
 
 </p>
 </details>
-````
