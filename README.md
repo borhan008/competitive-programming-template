@@ -161,3 +161,20 @@ inline T gcd(T a, T b)
 
 </p>
 </details>
+
+<details><summary>nCk Simple Version</summary>
+<p>
+
+```C++
+ll nck(ll n, ll k){
+	ll ans = 1;
+
+	for(ll i=n-k+1; i<=n; i++) ans*=i;
+	for(ll i=2; i<=k; i++) ans/=i;
+
+	return ans;
+}
+```
+
+</p>
+</details>
