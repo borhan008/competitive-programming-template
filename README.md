@@ -181,7 +181,7 @@ ll nck(ll n, ll k){
 
 ## Algorithms
 
-<details><summary>Subarray Sum of K</summary>
+<details><summary>Number of subarray with sum K</summary>
 <p>
 
 ```C++
