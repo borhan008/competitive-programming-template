@@ -178,3 +178,28 @@ ll nck(ll n, ll k){
 
 </p>
 </details>
+
+## Algorithms
+
+### Subarray Sum of K
+
+<details><summary>nCk Simple Version</summary>
+<p>
+
+```C++
+ll subarrayOfK(ll n, ll k, ll arr[]){
+	ll ans=0;
+	ll sum=0;
+	map<ll, ll> mp;
+	mp[0]=1;
+	for(ll i=0; i<n; i++){
+		sum += arr[i];
+		ans += mp[sum-k];
+		mp[sum]++;
+	}
+	return ans;
+}
+```
+
+</p>
+</details>
