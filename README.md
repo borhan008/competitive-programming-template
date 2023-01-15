@@ -201,3 +201,25 @@ ll subarrayOfK(ll n, ll k, ll arr[]){
 
 </p>
 </details>
+<details><summary>Subarray Divisible By K</summary>
+<p>
+
+```C++
+ll subarraysDivByK(ll nums[], ll n, ll k) {
+	ll sum=0, ans=0;
+
+	map<ll, ll> x;
+	x[0]=1;
+
+	for(ll i=0; i<n; i++){
+		sum += nums[i];
+		ans += x[(sum%k + k)%k];
+		x[(sum%k +k)%k]++;
+	}
+
+	return ans;
+}
+```
+
+</p>
+</details>
