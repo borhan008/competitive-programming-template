@@ -181,6 +181,7 @@ ll nck(ll n, ll k){
 
 <details><summary>Binary Exponentiation W/O Modulo</summary>
 <p>
+
 [cp-algorithms](https://cp-algorithms.com/algebra/binary-exp.html#implementation)
 
 ```C++
