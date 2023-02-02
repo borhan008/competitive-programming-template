@@ -179,6 +179,47 @@ ll nck(ll n, ll k){
 </p>
 </details>
 
+<details><summary>Binary Exponentiation W/O Modulo</summary>
+<p>
+[cp-algorithms](https://cp-algorithms.com/algebra/binary-exp.html#implementation)
+
+```C++
+long long binpow(long long a, long long b) {
+    long long res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a;
+        a = a * a;
+        b >>= 1;
+    }
+    return res;
+}
+```
+
+</p>
+</details>
+
+## Bits
+
+<details><summary>Checking i-th Bit Set or not</summary>
+<p>
+
+```C++
+ll checkBit  = ((n >> i) & 1);
+```
+
+</p>
+</details>
+<details><summary>Setting i-th Bit</summary>
+<p>
+
+```C++
+n = n + (1LL << i);
+```
+
+</p>
+</details>
+
 ## Algorithms
 
 <details><summary>Number of subarray with sum K</summary>
