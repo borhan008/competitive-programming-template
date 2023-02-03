@@ -200,6 +200,35 @@ long long binpow(long long a, long long b) {
 </p>
 </details>
 
+<details><summary>Prime Factorization</summary>
+<p>
+
+[cp-algorithms](https://cp-algorithms.com/algebra/factorization.html#wheel-factorization)
+
+```C++
+vector<ll> primeFactorization(ll n){
+   vector<ll> v;
+
+   while(n%2 == 0){
+      v.push_back(2);
+      n/=2;
+   }
+   for(ll i=3; i*i<=n; i+=2){
+      while(n%i == 0){
+         v.push_back(i);
+         n/=i;
+      }
+   }
+
+   if(n > 1)  v.push_back(n);
+
+   return v;
+}
+```
+
+</p>
+</details>
+
 ## Bits
 
 <details><summary>Checking i-th Bit Set or not</summary>
