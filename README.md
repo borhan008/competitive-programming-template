@@ -229,6 +229,36 @@ vector<ll> primeFactorization(ll n){
 </p>
 </details>
 
+<details>
+	<summary>Prime Numbers untill 1e5</summary>
+
+<p>
+
+```C++
+set<ll> primes;
+vector<bool> is_Prime(1e5+5, true);
+
+void seive(){
+	is_Prime[1] = false;
+	for(ll i=4; i<=1e5; i+=2) is_Prime[i]=false;
+
+	for(ll i=3; i<=1e5; i+=2){
+		if(is_Prime[i]==false) continue;
+		for(ll j=i*2; j<=1e5; j+=i){
+			is_Prime[j]=false;
+		}
+	}
+
+	primes.insert(2);
+	for(ll i=3; i<=1e5; i+=2){
+		if(is_Prime[i]) primes.insert(i);
+	}
+}
+```
+
+</p>
+</details>
+
 ## Bits
 
 <details><summary>Checking i-th Bit Set or not</summary>
@@ -294,3 +324,50 @@ ll subarraysDivByK(ll nums[], ll n, ll k) {
 
 </p>
 </details>
+
+## Graph
+
+<details><summary>BFS</summary>
+<p>
+
+```C++
+	ll n,e;	cin >> n >> e;
+	vector<ll> adj[n+1];
+	for(ll i=1; i<=n; i++){
+		ll x,y;	cin >> x >> y;
+		adj[x].push_back(y);
+		adj[y].push_back(x);
+	}
+
+	queue<ll> q;
+	vector<ll> p(n+1);
+	vector<ll> d(n+1);
+	vector<bool> used(n+1, false);
+
+	ll src=1;
+	q.push(src);
+	p[src]=-1;
+	used[src]=true;
+
+	while(!q.empty()){
+		ll v=q.front();
+		q.pop();
+		for(auto u:adj[v]){
+			if(!used[u]){
+				used[u]=true;
+				q.push(u);
+				d[u]=d[v]+1;
+				p[u]=v;
+			}
+		}
+	}
+
+	ll dist = 4;
+	list<ll> path;
+	for(ll i=dist; i!=-1; i=p[i]){
+		path.push_front(i);
+	}
+	for(auto v:path)	cout << v << " ";
+```
+
+</p>
