@@ -279,7 +279,16 @@ n = n + (1LL << i);
 
 </p>
 </details>
+<details><summary>Diagonal Movement/Knight Movement</summary>
+<p>
 
+```C++
+int dx[8] = {-1, 1, -2, 2, -2, 2, -1, 1};
+int dy[8] = {-2, -2, -1, -1, 1, 1, 2, 2};
+```
+
+</p>
+</details>
 ## Algorithms
 
 <details><summary>Number of subarray with sum K</summary>
