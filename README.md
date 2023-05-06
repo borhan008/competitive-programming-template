@@ -259,7 +259,7 @@ void seive(){
 </p>
 </details>
 
-## Bits
+## Bits & Others
 
 <details><summary>Checking i-th Bit Set or not</summary>
 <p>
@@ -378,6 +378,39 @@ ll subarraysDivByK(ll nums[], ll n, ll k) {
 		path.push_front(i);
 	}
 	for(auto v:path)	cout << v << " ";
+```
+
+</p>
+
+<details><summary>DSU by Size</summary>
+<p>
+
+```C++
+const int N = (int)1e5 + 10;
+int parent[N];
+int sizes[N];
+
+void make(int v){
+	parent[v] = v;
+	sizes[v] = 1;
+}
+
+int find(int v){
+	if(v == parent[v]) return v;
+	return parent[v] = find(parent[v]);
+}
+
+void Union(int a, int b){
+	a = find(a);
+	b = find(b);
+	if(a != b){
+		if(sizes[a] < sizes[b])
+			swap(a,b);
+
+		parent[b]=a;
+		sizes[a] += sizes[b];
+	}
+}
 ```
 
 </p>
