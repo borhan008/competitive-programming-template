@@ -279,7 +279,7 @@ n = n + (1LL << i);
 
 </p>
 </details>
-<details><summary>Diagonal Movement/Knight Movement</summary>
+<details><summary>Knight Movement</summary>
 <p>
 
 ```C++
@@ -414,3 +414,4 @@ void Union(int a, int b){
 ```
 
 </p>
+</details>
