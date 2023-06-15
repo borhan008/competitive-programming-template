@@ -139,6 +139,45 @@ ll lcm(ll a,ll b){
 
 </p>
 </details>
+<details><summary>BitInt</summary>
+<p>
+
+```C++
+struct bigint {
+    typedef vector<int> lnum;
+    const int base = 1000 * 1000 * 1000;
+    lnum a;
+    bigint() {}
+    bigint(string s) {
+        for (int i = (int)s.length(); i > 0; i -= 9)
+            if (i < 9)
+                a.push_back (atoi (s.substr (0, i).c_str()));
+            else
+                a.push_back (atoi (s.substr (i - 9, 9).c_str()));
+
+    }
+    void print() {
+        printf ("%d", a.empty() ? 0 : a.back());
+        for (int i = (int)a.size() - 2; i >= 0; --i)
+            printf ("%09d", a[i]);
+    }
+    void operator += (const bigint &B) {
+        const lnum &b = B.a;
+        int carry = 0;
+        for (size_t i = 0; i < max(a.size(),b.size()) || carry; ++i) {
+            if (i == a.size())
+                a.push_back (0);
+            a[i] += carry + (i < b.size() ? b[i] : 0);
+            carry = a[i] >= base;
+            if (carry)  a[i] -= base;
+        }
+    }
+};
+```
+
+</p>
+</details>
+
 <details><summary>GCD Fastest Implementation</summary>
 <p>
 
@@ -381,12 +420,14 @@ ll subarraysDivByK(ll nums[], ll n, ll k) {
 ```
 
 </p>
+</details>
 
 <details><summary>DSU by Size</summary>
 <p>
 
 ```C++
 const int N = (int)1e5 + 10;
+struct DSU {
 int parent[N];
 int sizes[N];
 
@@ -410,6 +451,7 @@ void Union(int a, int b){
 		parent[b]=a;
 		sizes[a] += sizes[b];
 	}
+}
 }
 ```
 
