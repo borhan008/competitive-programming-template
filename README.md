@@ -239,6 +239,61 @@ long long binpow(long long a, long long b) {
 </p>
 </details>
 
+<details><summary>Counting divisors upto 1e18</summary>
+<p>
+
+```C++
+#define int long long int
+#define all(a) a.begin(), a.end()
+
+set<int> primes;
+vector<bool> is_Prime(1e5+5, true);
+
+void seive(){
+	is_Prime[1] = false;
+	for(int i=4; i<=1e5; i+=2) is_Prime[i]=false;
+
+	for(int i=3; i<=1e5; i+=2){
+		if(is_Prime[i]==false) continue;
+		for(int j=i*2; j<=1e5; j+=i){
+			is_Prime[j]=false;
+		}
+	}
+
+	primes.insert(2);
+	for(int i=3; i<=1e5; i+=2){
+		if(is_Prime[i]) primes.insert(i);
+	}
+}
+
+int countFactos(int n){
+	int ans = 1;
+	for(auto l:primes){
+		if(l*l*l > n) break;
+		int cnt=1;
+		while(n%l == 0){
+			n/=l;
+			cnt++;
+		}
+		ans *= cnt;
+	}
+
+	if(binary_search(all(primes), n)){
+		ans *= 2;
+	} else if(floor(sqrtl(n*1.000000))==ceil(sqrtl(n*1.000)) && binary_search(all(primes), sqrtl(n))){
+		ans *= 3;
+	} else if(n != 1) {
+		ans *= 4;
+	}
+
+	return ans;
+}
+
+```
+
+</p>
+</details>
+
 <details><summary>Prime Factorization</summary>
 <p>
 
@@ -292,6 +347,44 @@ void seive(){
 	for(ll i=3; i<=1e5; i+=2){
 		if(is_Prime[i]) primes.insert(i);
 	}
+}
+
+```
+
+</p>
+</details>
+
+<details><summary>Matrix Exponentiation</summary>
+<p>
+
+```C++
+vector<vector<int>> mul(vector<vector<int>> a, vector<vector<int>> b, int n){
+	vector<vector<int>> ans(n, vector<int>(n, 0));
+	for(int i=0; i<n; i++){
+		for(int j=0; j<n; j++){
+			for(int k=0; k<n; k++){
+				ans[i][j] += (a[i][k]*b[k][j])%mod;
+				ans[i][j] %= mod;
+			}
+		}
+	}
+	return ans;
+}
+
+vector<vector<int>> matExp(vector<vector<int>> a, int n){
+		vector<vector<int>> ans = a;
+
+		while(n >= 1){
+			if(n%2 == 0){
+				a = mul(a, a, 2);
+				n/=2;
+			} else {
+				ans = mul(a, ans, 2);
+				n--;
+			}
+		}
+
+		return ans;
 }
 ```
 
