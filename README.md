@@ -550,3 +550,60 @@ void Union(int a, int b){
 
 </p>
 </details>
+
+## Range Query Template
+
+<details><summary>Sparse Table</summary>
+<p>
+
+```C++
+#include<bits/stdc++.h>
+using namespace std;
+
+#define int long long int
+const int mod = 998244353;
+
+const int mx = 1e6+2;
+const int maxN = log2(mx);
+int dp[maxN + 2][mx + 2];
+
+void table(int a[], int n){
+	int k = log2(n);
+	for(int i=0; i < n; i++){
+		dp[0][i] = a[i];
+	}
+
+	for(int j=1; j<=k; j++){
+		for(int i=0; i + (1 << (j-1)) <= n; i++){
+			dp[j][i] = min(dp[j-1][i], dp[j-1][i + (1 << (j-1))]);
+		}
+	}
+}
+
+int query(int a, int b){
+	a--; b--;
+	int len = b - a + 1;
+	int k = log2(len);
+	return min(dp[k][a], dp[k][b - (1<<k) + 1]);
+}
+
+int32_t main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t=1; //cin >> t;
+
+	while(t--){
+		int n, q;	cin >> n >> q;
+		int a[n];
+		for(int i=0; i<n; i++) cin >> a[i];
+		table(a, n);
+		while(q--){
+			int a, b; cin >> a>> b;
+			cout << query(a, b) << "\n";
+		}
+	}
+}
+```
+
+</p>
+</details>
