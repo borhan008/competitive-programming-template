@@ -139,6 +139,25 @@ ll lcm(ll a,ll b){
 
 </p>
 </details>
+
+<details><summary>Check Integer overflow or not</summary>
+<p>
+
+```C++
+Built-in Function: bool __builtin_add_overflow (type1 a, type2 b, type3 *res)
+Built-in Function: bool __builtin_sub_overflow (type1 a, type2 b, type3 *res)
+Built-in Function: bool __builtin_mul_overflow (type1 a, type2 b, type3 *res)
+
+Built-in Function: bool __builtin_add_overflow_p (type1 a, type2 b, type3 c)
+Built-in Function: bool __builtin_sub_overflow_p (type1 a, type2 b, type3 c)
+Built-in Function: bool __builtin_mul_overflow_p (type1 a, type2 b, type3 c)
+
+if(__builtin_mul_overflow(a, b, &temp)) Overflow;
+```
+
+</p>
+</details>
+
 <details><summary>BitInt</summary>
 <p>
 
@@ -668,6 +687,81 @@ int32_t main(){
 	return 0;
 }
 ```
+
+</p>
+</details>
+
+<details> <summary>Counting unique/distinct element within a range using Segment Tree</summary>
+<p>
+```c++ 
+#include <bits/stdc++.h>
+using namespace std;
+
+int n;
+const int mx = 2e5 + 10;
+int v[mx];
+int nxt_ri[mx];
+struct segtree {
+vector < int > tr[4 * mx];
+
+void build(int nod, int a, int b) {
+if (a == b) {
+tr[nod].push_back(nxt_ri[a]);
+return;
+}
+int mid = (a + b) >> 1;
+build(nod << 1, a, mid);
+build(nod << 1 | 1, mid + 1, b);
+merge(tr[nod << 1].begin(), tr[nod << 1].end(), tr[nod << 1 | 1].begin(), tr[nod << 1 | 1].end(), back_inserter(tr[nod]));
+}
+
+int query(int nod, int a, int b, int l, int r) {
+if (a > r || b < l) {
+return 0;
+}
+if (a >= l && b <= r) {
+return tr[nod].end() - upper_bound(tr[nod].begin(), tr[nod].end(), r);
+}
+int mid = (a + b) >> 1;
+
+    return (query(nod << 1, a, mid, l, r) + query(nod << 1 | 1, mid + 1, b, l, r));
+
+}
+
+}
+seg;
+
+int main() {
+ios::sync_with_stdio(0);
+cin.tie(0);
+int ts = 1;
+// cin >> ts;
+while (ts--) {
+int m, q, res = 1;
+cin >> n >> q;
+for (int i = 1; i <= n; i++)
+cin >> v[i];
+map < int, int > ump;
+for (int i = n; i >= 0; i--) {
+if (ump[v[i]] == 0) {
+nxt_ri[i] = n + 1;
+ump[v[i]] = i;
+} else {
+nxt_ri[i] = ump[v[i]];
+ump[v[i]] = i;
+}
+}
+seg.build(1, 1, n);
+while (q--) {
+int l, r, typ, idx;
+cin >> l >> r;
+
+      cout << seg.query(1, 1, n, l, r);
+      cout << "\n";
+    }
+
+}
+}```
 
 </p>
 </details>
