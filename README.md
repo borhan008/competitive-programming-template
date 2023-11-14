@@ -693,7 +693,8 @@ int32_t main(){
 
 <details> <summary>Counting unique/distinct element within a range using Segment Tree</summary>
 <p>
-```c++ 
+
+````c++
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -765,3 +766,4 @@ cin >> l >> r;
 
 </p>
 </details>
+````
