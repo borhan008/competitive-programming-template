@@ -237,6 +237,49 @@ ll nck(ll n, ll k){
 </p>
 </details>
 
+<details><summary>nCk With mod</summary>
+<p>
+
+```C++
+int mod = (int)1e9 + 7;
+
+vector<int> fact(1010);
+
+int binpow(int a, int b) {
+    int res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = (res%mod * a)%mod;
+        a = a * a; a%=mod;
+        b >>= 1; b%=mod;
+        res%=mod;
+    }
+    return res%mod;
+}
+
+void factorial(int n){
+	fact[0] = 1;
+	for(int i=1; i<=n; i++){
+		fact[i] = (fact[i-1]*i)%mod;
+	}
+}
+
+int inverse(int n, int p){
+	return binpow(n, p-2);
+}
+
+int nck(int n, int k){
+	if(n < k) return 0;
+	if(k==0) return 1;
+
+
+	return (fact[n]*inverse(fact[k],mod)%mod * inverse(fact[n-k], mod)%mod)%mod;
+}
+```
+
+</p>
+</details>
+
 <details><summary>Binary Exponentiation W/O Modulo</summary>
 <p>
 
